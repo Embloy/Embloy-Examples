@@ -26,11 +26,11 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome#index</h1>
-        <p>Find me in app/views/welcome/index.html.erb</p>
+        <h1>Job posting example</h1>
+        <p>This is an example job advert that can be found on a Embloy customer's web page </p>
 
-        <%= form_tag("/api/request", method: "post") do %>
-          <%= submit_tag("Apply with embloy") %>
+        <%= form_tag("/api/request", method: "get") do %>
+          <%= submit_tag("Apply with EMBLOY") %>
         <% end %>
     </div>
 </body>
