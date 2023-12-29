@@ -1,4 +1,44 @@
-### RUBY_ON_RAILS
+##############
+### NEXTJS ###
+##############
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/nextjs/node_modules
+/nextjs/.pnp
+.nextjs/pnp.js
+.nextjs/yarn/install-state.gz
+
+# testing
+/nextjs/coverage
+
+# next.js
+/nextjs/.next/
+/nextjs/out/
+
+# production
+/nextjs/build
+
+# misc
+.nextjs/DS_Store
+*.nextjs/pem
+
+# debug
+nextjs/npm-debug.log*
+nextjs/yarn-debug.log*
+nextjs/yarn-error.log*
+
+# vercel
+.nextjs/vercel
+
+# typescript
+*.nextjs/tsbuildinfo
+nextjs/next-env.d.ts
+
+#####################
+### RUBY_ON_RAILS ###
+#####################
 
 # See https://help.github.com/articles/ignoring-files for more about ignoring files.
 #
@@ -35,5 +75,3 @@
 
 # Ignore master key for decrypting credentials and more.
 /ruby_on_rails/config/master.key
-
-### DJANGO
