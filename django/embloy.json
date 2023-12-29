@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "embloy_app/wsgi.py",
+      "use": "@embloy/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "embloy_app/wsgi.py"
+    }
+  ]
+}

@@ -10,7 +10,16 @@ This example shows how to use Embloy's Quicklink with Django 4 using the [Python
 
 1. Fetch your personal client_token [here](https://www.postman.com/embloy/workspace/embloy-workspace/request/24977803-86b2cf1c-b02e-4d83-b65f-9c5e03cc89c4) and update the `.env` file accordingly
 
-2. Run the development server:
+2. Install the necessary dependencies:
+
+ 
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+    > Your Django application is now available at `http://localhost:8000`.
+
+3. Run the development server:
 
  
     ```bash
@@ -19,7 +28,7 @@ This example shows how to use Embloy's Quicklink with Django 4 using the [Python
 
     > Your Django application is now available at `http://localhost:8000`.
 
-3. Visit [localhost:3000](http://localhost:3000), press "_apply with embloy_" and follow the instructions
+4. Visit [localhost:8000](http://localhost:8000), press "_apply with embloy_" and follow the instructions
 
 ## How it Works
 

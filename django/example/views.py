@@ -8,8 +8,21 @@ def index(request):
     html = f'''
     <html>
         <body>
-            <h1>Hello from Vercel!</h1>
+            <h1>Hello from Embloy!</h1>
             <p>The current time is { now }.</p>
+            <button id="makeRequestButton">Make Request</button>
+            <script>
+                document.getElementById('makeRequestButton').addEventListener('click', function() {{
+                    fetch('/api/make_request', {{ redirect: 'follow' }})
+                        .then(response => {{
+                            if (!response.ok) {{
+                                throw new Error('Network response was not ok');
+                            }}
+                            window.location.href = response.url;
+                        }})
+                        .catch(error => console.error('Error:', error));
+                }});
+            </script>
         </body>
     </html>
     '''
