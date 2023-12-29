@@ -1,3 +1,24 @@
+#############
+### ASTRO ###
+#############
+
+# build output
+nextjs/dist/
+.nextjs/output/
+
+# dependencies
+nextjs/node_modules/
+
+# logs
+nextjs/npm-debug.log*
+nextjs/yarn-debug.log*
+nextjs/yarn-error.log*
+nextjs/pnpm-debug.log*
+
+# macOS-specific files
+.nextjs/DS_Store
+.nextjs/vercel
+
 ##############
 ### NEXTJS ###
 ##############

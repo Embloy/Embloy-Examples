@@ -16,5 +16,5 @@ class WelcomeController < ApplicationController
     puts response.read_body    
     request_token = JSON.parse(response.body)['request_token']
     redirect_to "http://localhost:3000/sdk/apply?token=#{request_token}"
-    end
+  end
 end
