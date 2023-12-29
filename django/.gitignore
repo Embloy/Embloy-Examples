@@ -1,4 +1,4 @@
-.vercel
+.embloy
 *.log
 *.pyc
 __pycache__
@@ -6,7 +6,7 @@ db.sqlite3
 media
 
 # Environments 
-.env 
+# .env 
 .venv 
 env/ 
 venv/ 

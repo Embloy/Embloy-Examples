@@ -1,44 +1,57 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fdjango&demo-title=Django%20%2B%20Vercel&demo-description=Use%20Django%204%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fdjango-template.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994241/random/django.png)
+# Embloy Example (Django)
 
-# Django + Vercel
+> An example implementation of Embloy Quicklink, integrated in a Django web service.
 
-This example shows how to use Django 4 on Vercel with Serverless Functions using the [Python Runtime](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/python).
+## Introduction
 
-## Demo
+This example shows how to use Embloy's Quicklink with Django 4 using the [Python Runtime](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/python).
 
-https://django-template.vercel.app/
+## How To Use
+
+1. Fetch your personal client_token [here](https://www.postman.com/embloy/workspace/embloy-workspace/request/24977803-86b2cf1c-b02e-4d83-b65f-9c5e03cc89c4) and update the `.env` file accordingly
+
+2. Run the development server:
+
+ 
+    ```bash
+    python manage.py runserver
+    ```
+
+    > Your Django application is now available at `http://localhost:8000`.
+
+3. Visit [localhost:3000](http://localhost:3000), press "_apply with embloy_" and follow the instructions
 
 ## How it Works
 
-Our Django application, `example` is configured as an installed application in `vercel_app/settings.py`:
+Our Django application, `example` is configured as an installed application in `embloy_app/settings.py`:
 
 ```python
-# vercel_app/settings.py
+# embloy_app/settings.py
 INSTALLED_APPS = [
     # ...
     'example',
 ]
 ```
 
-We allow "\*.vercel.app" subdomains in `ALLOWED_HOSTS`, in addition to 127.0.0.1:
+We allow "\*.embloy.app" subdomains in `ALLOWED_HOSTS`, in addition to 127.0.0.1:
 
 ```python
-# vercel_app/settings.py
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+# embloy/settings.py
+ALLOWED_HOSTS = ['127.0.0.1', '.embloy.app']
 ```
 
 The `wsgi` module must use a public variable named `app` to expose the WSGI application:
 
 ```python
-# vercel_app/wsgi.py
+# embloy_app/wsgi.py
 app = get_wsgi_application()
 ```
 
-The corresponding `WSGI_APPLICATION` setting is configured to use the `app` variable from the `vercel_app.wsgi` module:
+The corresponding `WSGI_APPLICATION` setting is configured to use the `app` variable from the `embloy_app.wsgi` module:
 
 ```python
-# vercel_app/settings.py
-WSGI_APPLICATION = 'vercel_app.wsgi.app'
+# embloy/settings.py
+WSGI_APPLICATION = 'embloy_app.wsgi.app'
 ```
 
 There is a single view which renders the current time in `example/views.py`:
@@ -55,7 +68,7 @@ def index(request):
     html = f'''
     <html>
         <body>
-            <h1>Hello from Vercel!</h1>
+            <h1>Hello from Embloy!</h1>
             <p>The current time is { now }.</p>
         </body>
     </html>
@@ -77,10 +90,10 @@ urlpatterns = [
 ]
 ```
 
-Finally, it's made accessible to the Django server inside `vercel_app/urls.py`:
+Finally, it's made accessible to the Django server inside `embloy_app/urls.py`:
 
 ```python
-# vercel_app/urls.py
+# embloy_app/urls.py
 from django.urls import path, include
 
 urlpatterns = [
@@ -89,18 +102,4 @@ urlpatterns = [
 ]
 ```
 
-This example uses the Web Server Gateway Interface (WSGI) with Django to enable handling requests on Vercel with Serverless Functions.
-
-## Running Locally
-
-```bash
-python manage.py runserver
-```
-
-Your Django application is now available at `http://localhost:8000`.
-
-## One-Click Deploy
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fdjango&demo-title=Django%20%2B%20Vercel&demo-description=Use%20Django%204%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fdjango-template.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994241/random/django.png)
+This example uses the Web Server Gateway Interface (WSGI) with Django to enable handling requests with Serverless Functions.

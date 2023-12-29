@@ -1,36 +1,37 @@
+# Embloy Example (Next.js)
+
+> An example implementation of Embloy Quicklink, integrated in a Next.js web service.
+
+## Introduction
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## How To Use
 
-First, install necessary dependencies:
+1. Fetch your personal client_token [here](https://www.postman.com/embloy/workspace/embloy-workspace/request/24977803-86b2cf1c-b02e-4d83-b65f-9c5e03cc89c4) and update the `.env` file accordingly
 
-```bash
-npm i
-# or
-yarn
-# or
-pnpm install
-# or
-bun install
-```
+2. install necessary dependencies:
 
-Then, run the development server:
+    ```bash
+    npm i
+    # or
+    yarn
+    # or
+    pnpm install
+    # or
+    bun install
+    ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+3. Run the development server:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see an example implementation of Embloy Quicklink itegrated in a Next.js web service.
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    # or
+    pnpm dev
+    # or
+    bun dev
+    ```
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Visit [localhost:3000](http://localhost:3000), press "_apply with embloy_" and follow the instructions
