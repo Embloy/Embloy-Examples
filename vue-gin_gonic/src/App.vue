@@ -1,6 +1,6 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <HelloWorld msg="Welcome to Embloy Vue.js+GinGonic Example"/>
   <div id="app">
     <a class="Embloy-Button" href="http://localhost:5000/api/make_request">Apply with EMBLOY</a>
   </div>

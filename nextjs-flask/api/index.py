@@ -6,10 +6,6 @@ from dotenv import load_dotenv
 load_dotenv()
 app = Flask(__name__)
 
-@app.route("/api/python")
-def hello_world():
-    return "<p>Hello, World!</p>"
-
 @app.route('/api/make_request', methods=['GET'])
 def make_request():
     try:
