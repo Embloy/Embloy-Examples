@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# The variable you want to set
+VAR_NAME="CLIENT_TOKEN"
+
+# Initialize VAR_VALUE
+VAR_VALUE="<your-client-token>"
+
+# Parse command-line arguments
+while getopts t: flag
+do
+    case "${flag}" in
+        t) VAR_VALUE=${OPTARG};;
+    esac
+done
+
+# Check if VAR_VALUE is set
+if [ -z "$VAR_VALUE" ]
+then
+    echo "Usage: ./env_setter -t <token>"
+    exit 1
+fi
+
+# Find all .env files in the repo
+for env_file in $(find . -name ".env")
+do
+  # Check if the variable is already set in the file
+  if grep -q "^$VAR_NAME=" "$env_file"; then
+    # If the variable is set, change its value
+    sed -i "s/^$VAR_NAME=.*/$VAR_NAME=$VAR_VALUE/" "$env_file"
+  else
+    # If the variable is not set, add it to the file
+    echo "$VAR_NAME=$VAR_VALUE" >> "$env_file"
+  fi
+done
