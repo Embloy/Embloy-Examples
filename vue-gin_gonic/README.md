@@ -22,7 +22,7 @@ This is a hybrid Vue.js+GinGonic app that uses [Vue.js](https://vuejs.org/) as t
     yarn serve
     ```
 
-4. Start the server on port 5000:
+4. Start the server on port 8081:
 
     ```bash
     go run main.go
@@ -30,7 +30,7 @@ This is a hybrid Vue.js+GinGonic app that uses [Vue.js](https://vuejs.org/) as t
 
 5. Visit [localhost:8080](http://localhost:8080), press "_apply with embloy_" and follow the instructions
 
-    > The GinGonic server will be running on [http://127.0.0.1:5000](http://127.0.0.1:5000) – feel free to change the port in `main.go`.
+    > The GinGonic server will be running on [http://127.0.0.1:8081](http://127.0.0.1:8081) – feel free to change the port in `main.go`.
 
 
 ## Available Scripts

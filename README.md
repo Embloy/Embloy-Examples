@@ -45,7 +45,6 @@ Choose your framework and cd into the respective directory. There you will find 
 - [ ] Angular
 - [X] Astro + Express
 - [X] Django
-- [ ] Gin-Gonic
 - [X] Next.js + FastAPI
 - [X] Next.js + Flask
 - [X] Next.js + TypeScript
@@ -53,7 +52,7 @@ Choose your framework and cd into the respective directory. There you will find 
 - [X] Ruby on Rails
 - [ ] Spring-Boot
 - [X] SvelteKit + Express
-- [ ] Vue
+- [X] Vue + Gin-Gonic
 
 ## Embloy-Button
 

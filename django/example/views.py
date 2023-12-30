@@ -8,7 +8,7 @@ def index(request):
     html = f'''
     <html>
         <body>
-            <h1>Hello from Embloy!</h1>
+            <h1>Welcome to Embloy Django Example!</h1>
             <p>The current time is { now }.</p>
             <button id="makeRequestButton">Make Request</button>
             <script>
