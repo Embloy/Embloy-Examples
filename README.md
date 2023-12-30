@@ -60,11 +60,17 @@ Choose your framework and cd into the respective directory. There you will find 
 You can customize the "_apply with embloy_" button however you want, but here are some default examples:
 
 - Plain (HTML)
+    
+    ![image](https://github.com/Embloy/Embloy-Examples/assets/106114526/92f6823b-8118-4704-9824-11f2a6d256d3)
+
     ```HTML
     <a className="Embloy-Button" href="https://<your-web-sevice>/api/make_request">Apply with EMBLOY</a>
     ```
 
-- Modern-Light (TypeScript+TailwindCSS)
+- Modern-Dark (TypeScript+TailwindCSS) 
+
+    ![Modern-Dark](https://github.com/Embloy/Embloy-Examples/assets/106114526/c2ab132b-05f4-484c-8cc1-435e2b9a4090)
+
     ```TypeScript
     <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
         <a
@@ -85,9 +91,12 @@ You can customize the "_apply with embloy_" button however you want, but here ar
     </div>
     ```
 
-- Modern-Dark (HTML+TailwindCSS)
+- Logo-Only-Monochrome-Dark (HTML+TailwindCSS)
+    
+    ![Logo-Only-Monochrome-Dark](https://github.com/Embloy/Embloy-Examples/assets/106114526/243285cb-a6f5-4ff5-8662-9a5ba6b51561)
+
     ```TypeScript
-    <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
+        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
         <a
         className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
         href="https://embloy.com"
@@ -96,29 +105,14 @@ You can customize the "_apply with embloy_" button however you want, but here ar
         >
         Apply with {' '}
         <Image
-            src="https://raw.githubusercontent.com/Embloy/Embloy-Examples/main/config/assets/embloy.svg"
+            src="https://raw.githubusercontent.com/Embloy/Embloy-Examples/main/config/assets/logo_black_white.svg"
             alt="Embloy logo"
-            width={100}
-            height={24}
+            width={50}
+            height={50}
             priority
         />
         </a>
     </div>
-    ```
-
-- Logo-Only-Dark (HTML+TailwindCSS)
-    ```HTML
-    ```
-
-    ```CSS
-    ```
-
-- Logo-Only-Light (HTML+TailwindCSS)
-
-    ```CSS
-    ```
-
-    ```HTML
     ```
 
 ---
