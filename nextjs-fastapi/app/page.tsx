@@ -20,7 +20,7 @@ const Home: NextPage = () => {
           >
             By{' '}
             <Image
-              src="/embloy.svg"
+              src="https://raw.githubusercontent.com/Embloy/Embloy-Examples/main/config/assets/embloy.svg"
               alt="Embloy logo"
               width={100}
               height={24}

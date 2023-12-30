@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import logo from 'https://raw.githubusercontent.com/Embloy/Embloy-Genius-Client/master/public/icons/logo_black_white.svg?token=GHSAT0AAAAAACIK6LT4P3TJPMU5V42U4XBCZMQD4JA';
 import './App.css';
 
 function App() {

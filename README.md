@@ -45,13 +45,13 @@ Choose your framework and cd into the respective directory. There you will find 
 - [ ] Angular
 - [X] Astro + Express
 - [X] Django
-- [ ] GoGin
+- [ ] Gin-Gonic
 - [X] Next.js + FastAPI
 - [X] Next.js + Flask
 - [X] Next.js + TypeScript
 - [X] React + Express
 - [X] Ruby on Rails
-- [ ] SpringBoot
+- [ ] Spring-Boot
 - [X] SvelteKit + Express
 - [ ] Vue
 
@@ -75,7 +75,7 @@ You can customize the "_apply with embloy_" button however you want, but here ar
         >
         Apply with {' '}
         <Image
-            src="/embloy.svg"
+            src="https://raw.githubusercontent.com/Embloy/Embloy-Examples/main/config/assets/embloy.svg"
             alt="Embloy logo"
             width={100}
             height={24}
@@ -96,7 +96,7 @@ You can customize the "_apply with embloy_" button however you want, but here ar
         >
         Apply with {' '}
         <Image
-            src="/embloy.svg"
+            src="https://raw.githubusercontent.com/Embloy/Embloy-Examples/main/config/assets/embloy.svg"
             alt="Embloy logo"
             width={100}
             height={24}
