@@ -1,12 +1,36 @@
-# Astro
+# Embloy Example (Astro+Express)
 
-- `/` - A static page (pre-rendered)
+> An example implementation of Embloy Quicklink, integrated in a Astro+Express web service.
 
-## Project Setup
+## Introduction
 
-- Start simple server `node server.js` on port 3001
-- Install client dependencies `pnpm install`
-- Start client `pnpm run dev`
+This is a hybrid Astro+Express app that uses AStro as the frontend and Express as the API backend.
+
+## How To Use
+
+1. Fetch your personal client_token [here](https://www.postman.com/embloy/workspace/embloy-workspace/request/24977803-86b2cf1c-b02e-4d83-b65f-9c5e03cc89c4) and update the `.env` file accordingly
+
+2. install necessary dependencies:
+
+    ```bash
+    pnpm install
+    ```
+
+3. Start the client:
+
+    ```bash
+    pnpm run dev
+    ```
+
+4. Start the server on port 5000:
+
+    ```bash
+    node server.js
+    ```
+
+5. Visit [localhost:3000](http://localhost:3000), press "_apply with embloy_" and follow the instructions
+
+    > The Express server will be running on [http://127.0.0.1:5000](http://127.0.0.1:5000) – feel free to change the port in `server.js`.
 
 ## Project Structure
 

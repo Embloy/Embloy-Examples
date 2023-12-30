@@ -2,6 +2,12 @@
 	import Counter from './Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
+
+	async function makeApiCall() {
+		const response = await fetch('http://localhost:5000/api/make_request');
+		const data = await response.json();
+		console.log(data);
+	}
 </script>
 
 <svelte:head>
@@ -18,14 +24,14 @@
 			</picture>
 		</span>
 
-		to your new<br />SvelteKit app
+		to EMBLOY's <br />SvelteKit example app
 	</h1>
 
 	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
+		Make sure to fetch a <strong>client_token</strong> first.
 	</h2>
 
-	<Counter />
+	<a class="App-link" href="http://localhost:5000/api/make_request"> Apply with EMBLOY </a>
 </section>
 
 <style>
@@ -56,4 +62,22 @@
 		top: 0;
 		display: block;
 	}
+
+	a {
+		display: flex;
+		height: 100%;
+		align-items: center;
+		padding: 0 0.5rem;
+		font-weight: 700;
+		font-size: 1.8rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		text-decoration: none;
+		transition: color 0.2s linear;
+	}
+
+	a:hover {
+		color: var(--color-theme-2);
+	}
+
 </style>

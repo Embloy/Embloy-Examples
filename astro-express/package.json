@@ -1,0 +1,25 @@
+{
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "name": "astro-express",
+  "description": "> An example implementation of Embloy Quicklink, integrated in a Astro+Express web service.",
+  "version": "1.0.0",
+  "main": "server.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@astrojs/vercel": "3.8.2",
+    "astro": "^2.10.14",
+    "axios": "^1.6.3",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "react": "18.2.0",
+    "web-vitals": "^3.3.1"
+  }
+}

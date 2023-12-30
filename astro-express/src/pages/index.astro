@@ -15,7 +15,7 @@ export const title = "Welcome to Embloy's Astro example";
 		</p>
 		<ul role="list" class="link-card-grid">
 			<Card
-				href="/api/make_request"
+				href="http://localhost:5000/api/make_request"
 				title="Job posting example"
 				body="This is an example job advert that can be found on an Embloy customer's web page."
 			/>
@@ -24,7 +24,6 @@ export const title = "Welcome to Embloy's Astro example";
 				title="Integrations"
 				body="Supercharge your project with new frameworks and libraries."
 			/>
-			<button class="action-button" @click=${makeRequest}>Make Request</button>
 		</ul>
 	</main>
 </Layout>
@@ -88,16 +87,3 @@ export const title = "Welcome to Embloy's Astro example";
 		padding: 0;
 	}
 </style>
-
-
-<script setup>
-	const makeRequest = async () => {
-		try {
-			const response = await fetch('/api/make_request');
-			const data = await response.json();
-			window.location.href = data.redirectUrl;
-		} catch (error) {
-			console.error('Error making request:', error);
-		}
-	};
-</script>
