@@ -2,7 +2,7 @@
 
 > **NOTE**: _Make sure to set your `client_token` accordingly in each SDK you want to test._
 
-This directory contains basic one-method examples of how to use Embloy's SDKs. You can find the same information in the [SDK documentation](https://developer.embloy.com/docs/sdks/overview).
+This directory contains basic one-method examples of how to use Embloy's SDKs. You can find the same information in the [SDK documentation](https://developers.embloy.com/docs/sdks/overview).
 
 ## Go SDK
 
