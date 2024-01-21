@@ -73,3 +73,5 @@ end
 
 # Enable .env file
 gem 'dotenv-rails', groups: [:development, :test]
+
+gem "embloy", "~> 0.1.6"

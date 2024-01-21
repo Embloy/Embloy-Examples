@@ -15,7 +15,7 @@ app.get('/api/make_request', async (req, res) => {
     }
 
     const response = await axios.post(
-      'http://localhost:3000/api/v0/sdk/request/auth/token',
+      'https://api.embloy.com/api/v0/sdk/request/auth/token',
       {},
       {
         headers: {
@@ -25,7 +25,7 @@ app.get('/api/make_request', async (req, res) => {
     );
 
     const requestToken = response.data.request_token;
-    res.redirect(302, `http://localhost:3000/sdk/apply?token=${requestToken}`);
+    res.redirect(302, `https://embloy.com/sdk/apply?request_token=${requestToken}`);
   } catch (error) {
     console.error(`Error making request: ${error.message}`);
     res.status(500).json({ error: 'Internal Server Error' });

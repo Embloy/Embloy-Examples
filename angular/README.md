@@ -1,16 +1,31 @@
-# Angular
+# Embloy Example (Angular)
 
-This directory is a brief example of an [Angular](https://angular.io/) app that can be deployed to Vercel with zero configuration.
+> An example implementation of Embloy Quicklink, integrated in a Angular web service.
+
+## Introduction
+
+This directory is a brief example of an [Angular](https://angular.io/) app that integrates Embloy's Quicklink SDK.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.3.
 
-## Deploy Your Own
+## How To Use
 
-Deploy your own Angular project with Vercel.
+1. Fetch your personal client_token [here](https://www.postman.com/embloy/workspace/embloy-workspace/request/24977803-86b2cf1c-b02e-4d83-b65f-9c5e03cc89c4) and update the `.env` file accordingly
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/angular&template=angular)
+2. Install the necessary dependencies:
 
-_Live Example: https://angular-template.vercel.app_
+    ```bash
+    npm i
+    ```
+
+3. Run the development server:
+
+    ```bash
+    ng serve
+    ```
+
+4. Visit [localhost:4200](http://localhost:4200), press "_apply with embloy_" and follow the instructions
+
 
 ## Development server
 

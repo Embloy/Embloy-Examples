@@ -26,7 +26,7 @@ func main() {
             return
         }
 
-        req, err := http.NewRequest("POST", "http://localhost:3000/api/v0/sdk/request/auth/token", nil)
+        req, err := http.NewRequest("POST", "https://api.embloy.com/api/v0/sdk/request/auth/token", nil)
         if err != nil {
             c.JSON(http.StatusInternalServerError, gin.H{"error": "Internal Server Error"})
             return
@@ -55,7 +55,7 @@ func main() {
             return
         }
 
-        c.Redirect(http.StatusFound, fmt.Sprintf("http://localhost:3000/sdk/apply?token=%s", requestToken))
+        c.Redirect(http.StatusFound, fmt.Sprintf("https://embloy.com/sdk/apply?request_token=%s", requestToken))
     })
 
     r.Run(":8081")

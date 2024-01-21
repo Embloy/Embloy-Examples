@@ -1,6 +1,6 @@
 export async function get() {
   try {
-    const url = 'http://localhost:3000/api/v0/sdk/request/auth/token';
+    const url = 'https://api.embloy.com/api/v0/sdk/request/auth/token';
     const response = await fetch(url, {
       method: 'POST',
       headers: {

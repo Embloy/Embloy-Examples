@@ -11,7 +11,7 @@ _In your backend add a **make_request** endpoint:_
 ```Javascript
 const clientToken = process.env.CLIENT_TOKEN;
 const response = await axios.post(
-    'http://localhost:3000/api/v0/sdk/request/auth/token',
+    'https://api.embloy.com/api/v0/sdk/request/auth/token',
     {},
     {
     headers: {
@@ -20,7 +20,7 @@ const response = await axios.post(
     }
 );
 const requestToken = response.data.request_token;
-res.redirect(302, `https://embloy.com/sdk/apply?token=${requestToken}`);
+res.redirect(302, `https://embloy.com/sdk/apply?request_token=${requestToken}`);
 ```  
 
 _In your frontend call this endpoint whereever you want:_
