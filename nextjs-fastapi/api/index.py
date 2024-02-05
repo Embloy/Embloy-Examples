@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 from fastapi import FastAPI, Response, HTTPException
-from embloy_sdk import EmbloyClient, EmbloySession
+from embloy_sdk import EmbloyClient, EmbloySession, SessionOptions
 from typing import Optional
 import os
 
@@ -15,7 +15,8 @@ def make_request(job_slug: Optional[str] = None, success_url: Optional[str] = No
     if not job_slug:
         raise HTTPException(status_code=400, detail="job_slug is required")
 
-    session = EmbloySession("job", job_slug, success_url, cancel_url)
+    options = SessionOptions(success_url=success_url, cancel_url=cancel_url)
+    session = EmbloySession("job", job_slug, options)
 
     try:
         url = EmbloyClient(client_token, session).make_request()
