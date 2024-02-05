@@ -29,7 +29,7 @@
         <h1>Job posting example</h1>
         <p>This is an example job advert that can be found on a Embloy customer's web page </p>
 
-        <%= form_tag("/api/request", method: "get") do %>
+        <%= form_tag("/api/request?job_slug=<your-job-slug>&success_url=<your-success-url>&cancel_url=<your-cancel-url>", method: "get") do %>
           <%= submit_tag("Apply with EMBLOY") %>
         <% end %>
     </div>
