@@ -29,9 +29,12 @@
         <h1>Job posting example</h1>
         <p>This is an example job advert that can be found on a Embloy customer's web page </p>
 
-        <%= form_tag("/api/request?job_slug=<your-job-slug>&success_url=<your-success-url>&cancel_url=<your-cancel-url>", method: "get") do %>
-          <%= submit_tag("Apply with EMBLOY") %>
-        <% end %>
+    <%= form_tag("/api/make_request", method: "get") do %>
+    <%= hidden_field_tag :job_slug, '<your-job-slug>' %>
+    <%= hidden_field_tag :success_url, '<your-success-url>' %>
+    <%= hidden_field_tag :cancel_url, '<your-cancel-url>' %>
+    <%= submit_tag("Apply with EMBLOY") %>
+    <% end %>
     </div>
 </body>
 </html>
