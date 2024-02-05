@@ -32,6 +32,8 @@ This is a hybrid Next.js + Python app that uses Next.js as the frontend and Fast
 
 4. Visit [localhost:3000](http://localhost:3000), press "_apply with embloy_" and follow the instructions
 
+5. FastAPI automatically builds a OpenAPI and Swagger API documentation at [localhost:3000/docs](http://localhost:3000/docs)  
+
 > The FastApi server will be running on [http://127.0.0.1:8000](http://127.0.0.1:8000) – feel free to change the port in `package.json` (you'll also need to update it in `next.config.js`).
 
 ## How It Works
