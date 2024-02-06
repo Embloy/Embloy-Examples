@@ -10,7 +10,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 0. Create an Embloy Account at [embloy.com/register](https://embloy.com/register)
 
-1. Fetch your personal `client_token` [here](https://www.postman.com/embloy/workspace/embloy-workspace/request/24977803-86b2cf1c-b02e-4d83-b65f-9c5e03cc89c4) 
+1. Fetch your personal `client_token` [here](https://www.postman.com/embloy/workspace/embloy-workspace/request/24977803-86b2cf1c-b02e-4d83-b65f-9c5e03cc89c4) and set it as a environment variable in your `.env` file
 
 2. install necessary dependencies:
 
@@ -24,7 +24,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
     bun install
     ```
 
-3. Run the development server:
+3. Optionally, you can set the `job_slug` in line 14 of `app/page.tsx` to one of your own jobs' `job_slug`. 
+
+4. Run the development server:
 
     ```bash
     npm run dev
@@ -36,7 +38,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
     bun dev
     ```
 
-4. Visit [localhost:3000](http://localhost:3000), input your `client_token` press "_apply with embloy_" and follow the instructions
+5. Visit [localhost:3000](http://localhost:3000), press "_apply with embloy_" and follow the instructions
 
 ## Build your site
 
