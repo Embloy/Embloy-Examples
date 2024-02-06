@@ -8,7 +8,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## How To Use
 
-1. Fetch your personal client_token [here](https://www.postman.com/embloy/workspace/embloy-workspace/request/24977803-86b2cf1c-b02e-4d83-b65f-9c5e03cc89c4) and update the `.env` file accordingly
+0. Create an Embloy Account at [embloy.com/register](https://embloy.com/register)
+
+1. Fetch your personal `client_token` [here](https://www.postman.com/embloy/workspace/embloy-workspace/request/24977803-86b2cf1c-b02e-4d83-b65f-9c5e03cc89c4) 
 
 2. install necessary dependencies:
 
@@ -34,4 +36,30 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
     bun dev
     ```
 
-4. Visit [localhost:3000](http://localhost:3000), press "_apply with embloy_" and follow the instructions
+4. Visit [localhost:3000](http://localhost:3000), input your `client_token` press "_apply with embloy_" and follow the instructions
+
+## Build your site
+
+Build your site **for production**:
+
+```bash
+npm run build
+```
+
+The static files are generated in the `.next` folder.
+
+Test your production build locally:
+
+```bash
+npm run start
+```
+
+The `.next` folder is now served at [http://localhost:3000/](http://localhost:3000/).
+
+You can now deploy the `.next` folder **almost anywhere** easily, **for free** or very small cost.
+
+## Deploy your site
+
+Deploy this example using [Vercel](https://vercel.com).
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Embloy/Embloy-Examples/tree/main/nextjs-ts&project-name=create-embloy-nextjs-ts&repository-name=create-embloy-nextjs-ts)
