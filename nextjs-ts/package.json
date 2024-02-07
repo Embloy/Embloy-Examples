@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "axios": "^1.6.5",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.2",
     "embloy": "^0.1.2-beta.20",
     "next": "14.0.4",
@@ -19,6 +20,7 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/node": "^20",
     "@types/node-fetch": "^2.6.11",
     "@types/react": "^18",

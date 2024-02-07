@@ -1,40 +1,60 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { EmbloyClient, EmbloySession } from 'embloy';
+import { NextApiRequest, NextApiResponse } from "next";
+import { EmbloyClient, EmbloySession } from "embloy";
+import Cors from "cors";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'POST') {
+// Initialize the cors middleware
+const cors = Cors({
+  methods: ["POST"],
+});
+
+// Helper method to handle CORS
+function runMiddleware(req: NextApiRequest, res: NextApiResponse, fn: any) {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result: any) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+      return resolve(result);
+    });
+  });
+}
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  await runMiddleware(req, res, cors);
+
+  if (req.method === "POST") {
     const clientToken = process.env.CLIENT_TOKEN;
     const jobSlug = req.query.job_slug as string;
 
-    // Some input validation ...
-    if (!clientToken) {
-      res.status(400).json({ error: 'client_token is required' });
-      return;
-    }
-
-    if (!jobSlug) {
-      res.status(400).json({ error: 'job_slug is required' });
-      return;
-    }
-
-    // Call the Embloy SDK to request a link to an application session which we then want to redirect the user to
-    let url = '';
     try {
-      const embloy = new EmbloyClient(clientToken, new EmbloySession("job", jobSlug));
-      url = await embloy.makeRequest(); // ✨ Here's where the magic happens ✨
-    } catch (error) {
-      console.error('Error making request:', error);
-      res.status(500).json({ error: 'Error making request' });
-      return;
-    }
+      // Some input validation ...
+      if (!clientToken) {
+        res.status(400).json({ error: "client_token is required" });
+        return;
+      }
 
-    // Redirect the user to the obtained URL
-    if (url) {
-      res.redirect(url);
-    } else {
-      res.status(500).json({ error: 'URL is not available' });
+      if (!jobSlug) {
+        res.status(400).json({ error: "job_slug is required" });
+        return;
+      }
+
+      // Call the Embloy SDK to request a link to an application session
+      const embloy = new EmbloyClient(
+        clientToken,
+        new EmbloySession("job", jobSlug)
+      );
+      const url = await embloy.makeRequest();
+
+      // Redirect the user to the obtained URL
+      res.status(302).setHeader("Location", url).end();
+    } catch (error) {
+      console.error("Error making request:", error);
+      res.status(500).json({ error: "Error making request" });
     }
   } else {
-    res.status(405).json({ error: 'Method not allowed' });
+    res.status(405).json({ error: "Method not allowed" });
   }
 }
