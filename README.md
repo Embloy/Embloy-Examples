@@ -49,10 +49,26 @@ Choose your framework and cd into the respective directory. There you will find 
 - [X] Next.js + Flask
 - [X] Next.js + TypeScript
 - [X] React + Express
+- [X] React + Laravel
 - [X] Ruby on Rails
 - [ ] Spring-Boot
 - [X] SvelteKit + Express
 - [X] Vue + Gin-Gonic
+
+## Fully tested frameworks
+
+- [ ] Angular
+- [ ] Astro + Express
+- [X] Django
+- [ ] Next.js + FastAPI
+- [ ] Next.js + Flask
+- [X] Next.js + TypeScript
+- [ ] React + Express
+- [ ] React + Laravel
+- [X] Ruby on Rails
+- [ ] Spring-Boot
+- [ ] SvelteKit + Express
+- [ ] Vue + Gin-Gonic
 
 ## Embloy-Button
 

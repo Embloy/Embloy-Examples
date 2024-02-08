@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "684f25a2a80285200d1a8f3f0d7d7459",
+    "content-hash": "826df7cfb032e0f73f6c9c670b603ff8",
     "packages": [
         {
             "name": "brick/math",
@@ -500,6 +500,59 @@
                 }
             ],
             "time": "2023-10-06T06:47:41+00:00"
+        },
+        {
+            "name": "embloy/embloy-php",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Embloy/Embloy-PHP.git",
+                "reference": "825f8adbb4c41911e3137cf641bac9cd35f74f86"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Embloy/Embloy-PHP/zipball/825f8adbb4c41911e3137cf641bac9cd35f74f86",
+                "reference": "825f8adbb4c41911e3137cf641bac9cd35f74f86",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.0",
+                "php": ">=8.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^11.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Embloy\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Carlo Bortolan",
+                    "email": "carlobortolan@gmail.com",
+                    "homepage": "https://developers.embloy.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": " Embloy's PHP SDK for interacting with your Embloy integration",
+            "homepage": "https://github.com/embloy/embloy-php",
+            "keywords": [
+                "composer-package",
+                "sdk",
+                "sdk-php"
+            ],
+            "support": {
+                "issues": "https://github.com/Embloy/Embloy-PHP/issues",
+                "source": "https://github.com/Embloy/Embloy-PHP/tree/main"
+            },
+            "time": "2024-02-08T00:36:59+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -8318,7 +8371,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "embloy/embloy-php": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

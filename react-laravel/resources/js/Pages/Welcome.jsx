@@ -1,122 +1,57 @@
-import { Link, Head } from '@inertiajs/react';
-import React, { useState } from 'react';
+import { Head } from '@inertiajs/react';
+import LoadingScreen from './Loading';
+import { useState } from 'react';
 
-const ApplicationButton = () => {
+export default function Welcome({ auth, laravelVersion, phpVersion }) {
     const [isLoading, setIsLoading] = useState(false);
-  
+   
     const handleApplyClick = async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch('/api/example', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            // You might need to include additional headers such as authorization tokens
-          },
-          body: JSON.stringify({
-            // Include any data you need to send to the backend
-          }),
-        });
+        setIsLoading(true);
+        try {
+          const response = await fetch('/api/example?job_slug=<your-job-slug>', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+    
+          console.log("Response: ", response);
+
+          if (response.status === 302) {
+            const responseData = await response.json();
+            const { url } = responseData;
+            window.location.href = url;
+            return;
+          }
+
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+    
+          // Parse the JSON response
+          const responseData = await response.json();
+          
+          // Extract the URL from the response
+          const { url } = responseData;
   
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
+          // Redirect the user to the obtained URL
+          window.location.href = url;
+        } catch (error) {
+          console.error('Error:', error);
+          // Handle error (e.g., display an error message)
+        } finally {
+          setIsLoading(false);
         }
-  
-        // Assuming the response contains the URL to redirect to
-        const responseData = await response.json();
-        window.location.href = responseData.url;
-      } catch (error) {
-        console.error('Error:', error);
-        // Handle error (e.g., display an error message)
-      } finally {
-        setIsLoading(false);
-      }
     };
 
     return (
         <div>
           {isLoading ? (
-            <div>Loading...</div>
+            <div><LoadingScreen/></div>
           ) : (
-        <button onClick={handleApplyClick}
-            className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500"
-        >
-            <div>
-                <div className="h-16 w-16 bg-red-50 dark:bg-red-800/20 flex items-center justify-center rounded-full">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth="1.5"
-                        className="w-7 h-7 stroke-red-500"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"
-                        />
-                    </svg>
-                </div>
-
-                <h2 className="mt-6 text-xl font-semibold text-gray-900 dark:text-white">
-                    Apply with EMBLOY
-                </h2>
-
-                <p className="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                    Apply with one click.
-                </p>
-            </div>
-
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                className="self-center shrink-0 stroke-red-500 w-6 h-6 mx-6"
-            >
-                <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                />
-            </svg>
-        </button>
-          )}
-        </div>
-    );
-};
-
-export default function Welcome({ auth, laravelVersion, phpVersion }) {
-    return (
         <>
             <Head title="Welcome" />
             <div className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
-                <div className="sm:fixed sm:top-0 sm:right-0 p-6 text-end">
-                    {auth.user ? (
-                        <Link
-                            href={route('dashboard')}
-                            className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                        >
-                            Dashboard
-                        </Link>
-                    ) : (
-                        <>
-                            <Link
-                                href={route('login')}
-                                className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                            >
-                                Log in
-                            </Link>
-
-                            <Link
-                                href={route('register')}
-                                className="ms-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                            >
-                                Register
-                            </Link>
-                        </>
-                    )}
-                </div>
-
                 <div className="max-w-7xl mx-auto p-6 lg:p-8">
                     <div className="flex justify-center">
                         <svg
@@ -134,10 +69,9 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
 
                     <div className="mt-16">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                            <a
-                                href="https://laravel.com/docs"
-                                className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500"
-                            >
+                            <button onClick={handleApplyClick}
+                                    className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500"
+                                >
                                 <div>
                                     <div className="h-16 w-16 bg-red-50 dark:bg-red-800/20 flex items-center justify-center rounded-full">
                                         <svg
@@ -149,20 +83,17 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                         >
                                             <path
                                                 strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+                                                d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"
                                             />
                                         </svg>
                                     </div>
 
                                     <h2 className="mt-6 text-xl font-semibold text-gray-900 dark:text-white">
-                                        Documentation
+                                        Apply with EMBLOY
                                     </h2>
 
                                     <p className="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                        Laravel has wonderful documentation covering every aspect of the framework.
-                                        Whether you are a newcomer or have prior experience with Laravel, we recommend
-                                        reading our documentation from beginning to end.
+                                        Make sure to set your <code>CLIENT_TOKEN</code> in the <code>.env</code> file first.<br/>You can change the job you will be redirected to by editing the <code>job_slug</code> in line 10 of <code>resources/js/Pages/Welcome.jsx</code>.
                                     </p>
                                 </div>
 
@@ -179,55 +110,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                         d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
                                     />
                                 </svg>
-                            </a>
-                            <ApplicationButton/>
-                            <a
-                                href="https://laravel-news.com"
-                                className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500"
-                            >
-                                <div>
-                                    <div className="h-16 w-16 bg-red-50 dark:bg-red-800/20 flex items-center justify-center rounded-full">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            strokeWidth="1.5"
-                                            className="w-7 h-7 stroke-red-500"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"
-                                            />
-                                        </svg>
-                                    </div>
-
-                                    <h2 className="mt-6 text-xl font-semibold text-gray-900 dark:text-white">
-                                        Laravel News
-                                    </h2>
-
-                                    <p className="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                        Laravel News is a community driven portal and newsletter aggregating all of the
-                                        latest and most important news in the Laravel ecosystem, including new package
-                                        releases and tutorials.
-                                    </p>
-                                </div>
-
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth="1.5"
-                                    className="self-center shrink-0 stroke-red-500 w-6 h-6 mx-6"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                                    />
-                                </svg>
-                            </a>
-
+                            </button>
                             <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                                 <div>
                                     <div className="h-16 w-16 bg-red-50 dark:bg-red-800/20 flex items-center justify-center rounded-full">
@@ -247,82 +130,53 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                     </div>
 
                                     <h2 className="mt-6 text-xl font-semibold text-gray-900 dark:text-white">
-                                        Vibrant Ecosystem
+                                        Documentation
                                     </h2>
 
                                     <p className="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                        Laravel's robust library of first-party tools and libraries, such as{' '}
+                                        Embloy's extensive documentation for SDKs compatible with {' '}
                                         <a
-                                            href="https://forge.laravel.com"
+                                            href="https://github.com/embloy/embloy-node"
                                             className="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                                         >
-                                            Forge
+                                            Node
                                         </a>
                                         ,{' '}
                                         <a
-                                            href="https://vapor.laravel.com"
+                                            href="https://github.com/embloy/embloy-java"
                                             className="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                                         >
-                                            Vapor
+                                            Java
                                         </a>
                                         ,{' '}
                                         <a
-                                            href="https://nova.laravel.com"
+                                            href="https://github.com/embloy/embloy-ruby"
                                             className="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                                         >
-                                            Nova
+                                            Ruby
                                         </a>
-                                        , and{' '}
+                                        ,{' '}
                                         <a
-                                            href="https://envoyer.io"
+                                            href="https://github.com/embloy/embloy-go"
                                             className="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                                         >
-                                            Envoyer
+                                            Go
+                                        </a>
+                                        ,{' '}
+                                        <a
+                                            href="https://github.com/embloy/embloy-python"
+                                            className="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                                        >
+                                            Python
+                                        </a>
+                                        ,{' '}
+                                        <a
+                                            href="https://github.com/embloy/embloy-php"
+                                            className="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                                        >
+                                            PHP
                                         </a>{' '}
-                                        help you take your projects to the next level. Pair them with powerful open
-                                        source libraries like{' '}
-                                        <a
-                                            href="https://laravel.com/docs/billing"
-                                            className="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                                        >
-                                            Cashier
-                                        </a>
-                                        ,{' '}
-                                        <a
-                                            href="https://laravel.com/docs/dusk"
-                                            className="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                                        >
-                                            Dusk
-                                        </a>
-                                        ,{' '}
-                                        <a
-                                            href="https://laravel.com/docs/broadcasting"
-                                            className="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                                        >
-                                            Echo
-                                        </a>
-                                        ,{' '}
-                                        <a
-                                            href="https://laravel.com/docs/horizon"
-                                            className="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                                        >
-                                            Horizon
-                                        </a>
-                                        ,{' '}
-                                        <a
-                                            href="https://laravel.com/docs/sanctum"
-                                            className="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                                        >
-                                            Sanctum
-                                        </a>
-                                        ,{' '}
-                                        <a
-                                            href="https://laravel.com/docs/telescope"
-                                            className="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                                        >
-                                            Telescope
-                                        </a>
-                                        , and more.
+                                        and more.
                                     </p>
                                 </div>
                             </div>
@@ -333,7 +187,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                         <div className="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-start">
                             <div className="flex items-center gap-4">
                                 <a
-                                    href="https://github.com/sponsors/taylorotwell"
+                                    href="https://about.embloy.com/en/contact"
                                     className="group inline-flex items-center hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                                 >
                                     <svg
@@ -349,7 +203,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                             d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
                                         />
                                     </svg>
-                                    Sponsor
+                                    Contact
                                 </a>
                             </div>
                         </div>
@@ -372,5 +226,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                 }
             `}</style>
         </>
+        )}
+        </div>
     );
 }

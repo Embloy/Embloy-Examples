@@ -1,10 +1,8 @@
-"use client";
-import Image from "next/image";
 
 const LoadingScreen = () => {
     return (
         <div className="fixed inset-0 flex justify-center items-center z-50 bg-black overflow-hidden">
-            <Image
+            <img
                 src="/embloy.svg"
                 alt="Logo"
                 height="20"

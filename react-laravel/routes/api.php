@@ -19,4 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/example', [ExampleController::class, 'handleExampleRequest']);
+Route::post('/example', [ExampleController::class, 'handleExampleRequest']);
