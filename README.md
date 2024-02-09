@@ -9,24 +9,28 @@ E.g.:
 _In your backend add a **make_request** endpoint:_
 
 ```Javascript
-const clientToken = process.env.CLIENT_TOKEN;
-const response = await axios.post(
-    'https://api.embloy.com/api/v0/sdk/request/auth/token',
-    {},
-    {
-    headers: {
-        client_token: clientToken,
-    },
-    }
+// Call the Embloy SDK to request a link to an application session
+const embloy = new EmbloyClient(
+    process.env.CLIENT_TOKEN,
+    new EmbloySession("job", jobSlug)
 );
-const requestToken = response.data.request_token;
-res.redirect(302, `https://embloy.com/sdk/apply?request_token=${requestToken}`);
+const url = await embloy.makeRequest();
+
+// Return the URL to the client
+res.status(200).json({ url: url });
 ```  
 
 _In your frontend call this endpoint whereever you want:_
 
-```HTML
-<a className="App-link" href="https://<your-web-sevice>/api/make_request">Apply with EMBLOY</a>
+```TypeScript
+// Call your endpoint
+const response = await fetch("/api/example?job_slug=<your-job-slug>", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+});
+
+// Redirect the user to the obtained URL from the response
+window.location.href = await response.json().url;
 ```  
 
 ## How To Use
@@ -44,6 +48,7 @@ Choose your framework and cd into the respective directory. There you will find 
 
 - [ ] Angular
 - [X] Astro + Express
+- [X] Blazor + ASP.NET Core using
 - [X] Django
 - [X] Next.js + FastAPI
 - [X] Next.js + Flask
@@ -55,10 +60,11 @@ Choose your framework and cd into the respective directory. There you will find 
 - [X] SvelteKit + Express
 - [X] Vue + Gin-Gonic
 
-## Fully tested frameworks
+## Fully tested frameworks on remote servers and chromium & firefox clients
 
 - [ ] Angular
 - [ ] Astro + Express
+- [ ] Blazor + ASP.NET Core using
 - [X] Django
 - [ ] Next.js + FastAPI
 - [ ] Next.js + Flask
@@ -74,12 +80,34 @@ Choose your framework and cd into the respective directory. There you will find 
 
 You can customize the "_apply with embloy_" button however you want, but here are some default examples:
 
-- Plain (HTML)
+- Plain dark (HTML)
     
-    ![image](https://github.com/Embloy/Embloy-Examples/assets/106114526/92f6823b-8118-4704-9824-11f2a6d256d3)
+    ![button-black_large](https://embloy.com/images/button-black_large.svg)
 
     ```HTML
-    <a className="Embloy-Button" href="https://<your-web-sevice>/api/make_request">Apply with EMBLOY</a>
+    <a href="<insert-your-redirect-url-here>" target="_blank" rel="noopener noreferrer">
+        <img src="https://embloy.com/images/button-black_large.svg" style="width: 300px; height: auto;">
+    </a>
+    ```
+
+- Plain light (HTML)
+    
+    ![button-white_large](https://embloy.com/images/button-white_large.svg)
+
+    ```HTML
+    <a href="<insert-your-redirect-url-here>" target="_blank" rel="noopener noreferrer">
+        <img src="https://embloy.com/images/button-white_large.svg" style="width: 300px; height: auto;">
+    </a>
+    ```
+
+- Plain colorful (HTML)
+    
+    ![button-purple_large](https://embloy.com/images/button-purple_large.svg)
+
+    ```HTML
+    <a href="<insert-your-redirect-url-here>" target="_blank" rel="noopener noreferrer">
+        <img src="https://embloy.com/images/button-purple_large.svg" style="width: 300px; height: auto;">
+    </a>
     ```
 
 - Modern-Dark (TypeScript+TailwindCSS) 
@@ -87,23 +115,21 @@ You can customize the "_apply with embloy_" button however you want, but here ar
     ![Modern-Dark](https://github.com/Embloy/Embloy-Examples/assets/106114526/c2ab132b-05f4-484c-8cc1-435e2b9a4090)
 
     ```TypeScript
-    <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-        <a
-        className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-        href="https://embloy.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        >
-        Apply with {' '}
-        <Image
-            src="https://raw.githubusercontent.com/Embloy/Embloy-Examples/main/config/assets/embloy.svg"
-            alt="Embloy logo"
-            width={100}
-            height={24}
-            priority
-        />
-        </a>
-    </div>
+    <a
+    className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
+    href="https://embloy.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    >
+    Apply with {' '}
+    <Image
+        src="https://raw.githubusercontent.com/Embloy/Embloy-Examples/main/config/assets/embloy.svg"
+        alt="Embloy logo"
+        width={100}
+        height={24}
+        priority
+    />
+    </a>
     ```
 
 - Logo-Only-Monochrome-Dark (HTML+TailwindCSS)
@@ -111,23 +137,21 @@ You can customize the "_apply with embloy_" button however you want, but here ar
     ![Logo-Only-Monochrome-Dark](https://github.com/Embloy/Embloy-Examples/assets/106114526/243285cb-a6f5-4ff5-8662-9a5ba6b51561)
 
     ```TypeScript
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-        <a
-        className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-        href="https://embloy.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        >
-        Apply with {' '}
-        <Image
-            src="https://raw.githubusercontent.com/Embloy/Embloy-Examples/main/config/assets/logo_black_white.svg"
-            alt="Embloy logo"
-            width={50}
-            height={50}
-            priority
-        />
-        </a>
-    </div>
+    <a
+    className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
+    href="https://embloy.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    >
+    Apply with {' '}
+    <Image
+        src="https://raw.githubusercontent.com/Embloy/Embloy-Examples/main/config/assets/logo_black_white.svg"
+        alt="Embloy logo"
+        width={50}
+        height={50}
+        priority
+    />
+    </a>
     ```
 
 ---
