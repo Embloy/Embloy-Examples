@@ -22,8 +22,12 @@ const Home: NextPage = () => {
         throw new Error("Error making request");
       }
 
-      // Redirect the user to the application portal
-      window.location.href = response.url;
+      // Get the URL from the response
+      const responseData = await response.json();
+      const url = responseData.url;
+
+      // Redirect the user to the obtained URL
+      window.location.href = url;
     } catch (error) {
       console.error("Error making request:", error);
     } finally {

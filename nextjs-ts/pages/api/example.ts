@@ -48,8 +48,8 @@ export default async function handler(
       );
       const url = await embloy.makeRequest();
 
-      // Redirect the user to the obtained URL
-      res.status(302).setHeader("Location", url).end();
+      // Return the URL to the client
+      res.status(200).json({ url: url });
     } catch (error) {
       console.error("Error making request:", error);
       res.status(500).json({ error: "Error making request" });
