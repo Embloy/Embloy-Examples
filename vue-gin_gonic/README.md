@@ -39,18 +39,32 @@ In the project directory, you can run:
 
 #### Compile and hot-reload for development
 
-```
+```bash
 yarn serve
 ```
 
 #### Compile and minify for production
 
-```
+```bash
 yarn build
 ```
 
 #### Lint and fix files
 
-```
+```bash
 yarn lint
+```
+
+## Docker
+
+Build the image
+
+```bash
+docker build -t vuegin .
+```
+
+Start the container
+
+```bash
+docker run -p 8080:8080 -p 8081:8081 -d vuegin
 ```

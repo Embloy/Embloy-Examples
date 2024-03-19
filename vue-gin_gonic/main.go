@@ -1,62 +1,55 @@
 package main
 
 import (
-    "github.com/gin-gonic/gin"
-    "github.com/joho/godotenv"
-    "net/http"
-    "os"
-    "io/ioutil"
-    "encoding/json"
-    "fmt"
-    "log"
+	"log"
+	"net/http"
+	"os"
+
+	"github.com/embloy/embloy-go/embloy"
+	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func main() {
-    err := godotenv.Load()
-    if err != nil {
-        log.Fatal("Error loading .env file")
-    }
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 
-    r := gin.Default()
+	r := gin.Default()
 
-    r.GET("/api/make_request", func(c *gin.Context) {
-        clientToken, exists := os.LookupEnv("CLIENT_TOKEN")
-        if !exists {
-            c.JSON(http.StatusInternalServerError, gin.H{"error": "CLIENT_TOKEN is not set"})
-            return
-        }
+	r.GET("/api/make_request", func(c *gin.Context) {
+		// Fetch the client_token from ENV
+		clientToken, exists := os.LookupEnv("CLIENT_TOKEN")
+		if !exists {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "CLIENT_TOKEN is not set"})
+			return
+		}
 
-        req, err := http.NewRequest("POST", "https://api.embloy.com/api/v0/sdk/request/auth/token", nil)
-        if err != nil {
-            c.JSON(http.StatusInternalServerError, gin.H{"error": "Internal Server Error"})
-            return
-        }
-        req.Header.Set("client_token", clientToken)
+		// Check if request is well-formed
+		jobSlug := c.Query("job_slug")
+		if jobSlug == "" {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "job_slug is required"})
+			return
+		}
 
-        resp, err := http.DefaultClient.Do(req)
-        if err != nil || resp.StatusCode != http.StatusOK {
-            c.JSON(http.StatusInternalServerError, gin.H{"error": "Internal Server Error"})
-            return
-        }
-        defer resp.Body.Close()
+		// Call Embloy-Go SDK to get a request_token
+		client := embloy.NewEmbloyClient(clientToken, map[string]string{
+			"mode":        "job",
+			"success_url": "",
+			"cancel_url":  "",
+			"job_slug":    jobSlug,
+		})
 
-        body, err := ioutil.ReadAll(resp.Body)
-        if err != nil {
-            c.JSON(http.StatusInternalServerError, gin.H{"error": "Internal Server Error"})
-            return
-        }
+		response, err := client.MakeRequest()
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
 
-        var result map[string]string
-        json.Unmarshal(body, &result)
+		// Redirect to the Embloy application portal
+		c.Redirect(http.StatusFound, response)
+	})
 
-        requestToken, exists := result["request_token"]
-        if !exists {
-            c.JSON(http.StatusInternalServerError, gin.H{"error": "Internal Server Error"})
-            return
-        }
-
-        c.Redirect(http.StatusFound, fmt.Sprintf("https://embloy.com/sdk/apply?request_token=%s", requestToken))
-    })
-
-    r.Run(":8081")
+	r.Run(":8081")
 }
