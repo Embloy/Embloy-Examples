@@ -65,16 +65,16 @@ Choose your framework and cd into the respective directory. There you will find 
 - [ ] Angular
 - [ ] Astro + Express
 - [ ] Blazor + ASP.NET Core using
-- [X] Django
+- [X] Django (see https://genius.embloy.com)
 - [ ] Next.js + FastAPI
 - [ ] Next.js + Flask
-- [X] Next.js + TypeScript
+- [X] Next.js + TypeScript (see https://example.embloy.com)
 - [ ] React + Express
 - [ ] React + Laravel
-- [X] Ruby on Rails
+- [X] Ruby on Rails (see https://example-rails.onrender.com)
 - [ ] Spring-Boot
 - [ ] SvelteKit + Express
-- [ ] Vue + Gin-Gonic
+- [X] Vue + Gin-Gonic (see https://embloy-examples-vue-gin.onrender.com/)
 
 ## Embloy-Button
 
