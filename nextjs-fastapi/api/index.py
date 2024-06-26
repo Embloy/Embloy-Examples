@@ -3,6 +3,7 @@ from fastapi import FastAPI, Response, HTTPException
 from embloy_sdk import EmbloyClient, EmbloySession, SessionOptions
 from typing import Optional
 import os
+from requests.exceptions import HTTPError
 
 load_dotenv()
 app = FastAPI()
@@ -20,7 +21,11 @@ def make_request(job_slug: Optional[str] = None, success_url: Optional[str] = No
 
     try:
         url = EmbloyClient(client_token, session).make_request()
+        print(f"Redirecting to {url}")
         return Response(status_code=302, headers={'Location': url})
+    except HTTPError as http_err:
+        print(f"HTTP error occurred: {http_err}")  # Python 3.6
+        return {"error": "HTTP error occurred"}, 500
     except Exception as error:
         print(f"Error making request: {error}")
         return {"error": str(error)}, 500
