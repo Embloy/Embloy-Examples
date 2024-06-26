@@ -34,12 +34,13 @@ func main() {
 		}
 
 		// Call Embloy-Go SDK to get a request_token
-		client := embloy.NewEmbloyClient(clientToken, map[string]string{
-			"mode":        "job",
-			"success_url": "",
-			"cancel_url":  "",
-			"job_slug":    jobSlug,
-		})
+		sessionData := embloy.SessionData{
+			Mode:       "job",
+			SuccessURL: "your-success-url",
+			CancelURL:  "your-cancel-url",
+			JobSlug:    jobSlug,
+		}
+		client := embloy.NewEmbloyClient(clientToken, sessionData)
 
 		response, err := client.MakeRequest()
 		if err != nil {

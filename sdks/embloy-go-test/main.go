@@ -1,23 +1,25 @@
 package main
 
 import (
-    "fmt"
-    "github.com/embloy/embloy-go/embloy"
+	"fmt"
+
+	"github.com/embloy/embloy-go/embloy"
 )
 
 func main() {
-    client := embloy.NewEmbloyClient("your-client-token", map[string]string{
-        "mode":        "job",
-        "success_url": "your-success-url",
-        "cancel_url":  "your-cancel-url",
-        "job_slug":    "your-job-slug",
-    })
+	sessionData := embloy.SessionData{
+		Mode:       "job",
+		SuccessURL: "your-success-url",
+		CancelURL:  "your-cancel-url",
+		JobSlug:    "your-job-slug",
+	}
+	client := embloy.NewEmbloyClient("your-client-token", sessionData)
 
-    result, err := client.MakeRequest()
-    if err != nil {
-        fmt.Println("Error:", err)
-        return
-    }
+	result, err := client.MakeRequest()
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
 
-    fmt.Println("Result:", result)
+	fmt.Println("Result:", result)
 }
