@@ -507,12 +507,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Embloy/Embloy-PHP.git",
-                "reference": "825f8adbb4c41911e3137cf641bac9cd35f74f86"
+                "reference": "75f5de2a927a755b0718c630f5e7a672a6c45b6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Embloy/Embloy-PHP/zipball/825f8adbb4c41911e3137cf641bac9cd35f74f86",
-                "reference": "825f8adbb4c41911e3137cf641bac9cd35f74f86",
+                "url": "https://api.github.com/repos/Embloy/Embloy-PHP/zipball/75f5de2a927a755b0718c630f5e7a672a6c45b6f",
+                "reference": "75f5de2a927a755b0718c630f5e7a672a6c45b6f",
                 "shasum": ""
             },
             "require": {
@@ -520,7 +520,7 @@
                 "php": ">=8.0.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^11.0"
+                "phpunit/phpunit": "^11.2"
             },
             "default-branch": true,
             "type": "library",
@@ -552,7 +552,7 @@
                 "issues": "https://github.com/Embloy/Embloy-PHP/issues",
                 "source": "https://github.com/Embloy/Embloy-PHP/tree/main"
             },
-            "time": "2024-02-08T00:36:59+00:00"
+            "time": "2024-06-26T08:17:56+00:00"
         },
         {
             "name": "fruitcake/php-cors",

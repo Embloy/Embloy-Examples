@@ -25,13 +25,13 @@ dependencies {
     implementation(libs.guava)
 
     // Embloy SDK
-    implementation("com.embloy:sdk:0.1.6")
+    implementation("com.embloy:sdk:0.1.14")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(11))
+        languageVersion.set(JavaLanguageVersion.of(22))
     }
 }
 

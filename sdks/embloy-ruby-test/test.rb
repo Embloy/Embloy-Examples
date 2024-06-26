@@ -6,12 +6,12 @@ require 'embloy'
 
 session = {
     mode: "job",
-    job_slug: "job#1",
+    job_slug: "your-job-slug",
     success_url: "mypage.com/success",
     cancel_url: "mypage.com/failure"
 }
 
-client_token = "YOUR_CLIENT_TOKEN"
+client_token = "your-client-token"
 client = Embloy::Client.new(client_token, session)
 redirect_url = client.make_request
 puts "redirect_url: #{redirect_url}"

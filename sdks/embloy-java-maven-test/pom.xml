@@ -18,10 +18,8 @@
         <dependency>
             <groupId>com.embloy</groupId>
             <artifactId>sdk</artifactId>
-            <version>0.1.6</version>
+            <version>0.1.14</version>
         </dependency>
-
-        <!-- Add other dependencies as needed -->
     </dependencies>
 
     <build>
