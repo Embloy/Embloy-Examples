@@ -13,8 +13,8 @@ class WelcomeController < ApplicationController
     session = {
       mode: "job",
       job_slug: params[:job_slug],
-      success_url: params[:success_url],
-      cancel_url: params[:cancel_url]
+      success_url: "https://example.com/success",
+      cancel_url: "https://example.com/failure"
     }
     puts "Session data prepared: #{session.inspect}"
   
